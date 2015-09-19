@@ -1,6 +1,7 @@
 class Edge
 {
     final Vertex[] vertices;
+    int value;
 
     public Edge(Vertex... vertices)
     {
@@ -25,6 +26,16 @@ class Edge
     public Vertex getTarget()
     {
         return vertices[1];
+    }
+
+    public int getValue()
+    {
+        return value;
+    }
+
+    public void setValue(int value)
+    {
+        this.value = value;
     }
 
     @Override
