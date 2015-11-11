@@ -1,17 +1,19 @@
+import java.util.HashSet;
+import java.util.Set;
+
 class Vertex
 {
     final int id;
-    int value;
+
+    // The vertices that target this vertex.
+    Set<Vertex> origins = new HashSet<Vertex>();
+
+    // The vertices targeted by this vertex.
+    Set<Vertex> targets = new HashSet<Vertex>();
 
     public Vertex(int id)
     {
         this.id = id;
-    }
-
-    public Vertex(int id, int value)
-    {
-        this.id = id;
-        this.value = value;
     }
 
     public int getId()
@@ -19,14 +21,26 @@ class Vertex
         return id;
     }
 
-    public int getValue()
+    public Set<Vertex> getOrigins()
     {
-        return value;
+        return origins;
     }
 
-    public void setValue(int value)
+    public Set<Vertex> getTargets()
     {
-        this.value = value;
+        return targets;
+    }
+
+    public void target(Vertex vertex)
+    {
+        targets.add(vertex);
+        vertex.origins.add(this);
+    }
+
+    public void untarget(Vertex vertex)
+    {
+        targets.remove(vertex);
+        vertex.origins.remove(this);
     }
 
     @Override
